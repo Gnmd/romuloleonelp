@@ -15,6 +15,7 @@ const structuredData = {
 	telephone: '+55-19-99721-0581',
 	image: `${siteUrl}/images/romulo-leone-og.jpg`,
 	url: `${siteUrl}/`,
+	logo: `${siteUrl}/icon-512.png`,
 };
 
 const seoPlugin = {
