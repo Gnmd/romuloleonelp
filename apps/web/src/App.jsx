@@ -100,13 +100,17 @@ function App() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="relative"
+                className="relative w-full max-w-md mx-auto md:mr-0"
               >
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
                   <img
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto aspect-[4/5] object-cover"
                     alt="Foto do Dr. Rômulo Leone, médico residente em psiquiatria"
-                    src={site.photoUrl}
+                    src={site.photo.src}
+                    srcSet={site.photo.srcSet}
+                    sizes={site.photo.sizes}
+                    width={site.photo.width}
+                    height={site.photo.height}
                   />
                   <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
                 </div>
@@ -115,7 +119,7 @@ function App() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="absolute -bottom-6 right-2 md:-right-6 bg-white rounded-2xl p-6 shadow-2xl"
+                  className="absolute -bottom-6 right-2 md:right-auto md:-left-6 bg-white rounded-2xl p-6 shadow-2xl"
                 >
                   <div className="flex items-center gap-3">
                     <div className="bg-blue-100 p-3 rounded-full">
@@ -307,7 +311,7 @@ function App() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-10 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg h-auto whitespace-normal px-6 sm:px-10 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                 >
                   <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
                     <Calendar className="mr-2 h-6 w-6" aria-hidden="true" />

@@ -1,10 +1,16 @@
-// Dados centrais do site. Para hospedar as imagens no próprio site, salve-as em
-// `public/images/` e troque as URLs abaixo por `/images/<arquivo>`.
+// Dados centrais do site.
 export const site = {
 	name: 'Dr. Rômulo Leone',
 	crm: 'CRM/SP 256.617',
 	phoneDisplay: '(19) 99721-0581',
 	whatsappUrl: 'https://wa.me/5519997210581?text=Ol%C3%A1%2C%20Romulo%21%20Gostaria%20de%20agendar%20uma%20consulta%2E',
 	logoUrl: 'https://horizons-cdn.hostinger.com/d03722f1-6557-4911-a882-dd0d28308ec4/b35988045bba8004def0a9c355ceb160.png',
-	photoUrl: 'https://lh3.googleusercontent.com/d/1ZyRDWo9IihsjJaoGs6fpK2t5_cgaV2pH',
+	// Foto em retrato 4:5 (arquivos em public/images/).
+	photo: {
+		src: '/images/romulo-leone-800.webp',
+		srcSet: '/images/romulo-leone-480.webp 480w, /images/romulo-leone-800.webp 800w, /images/romulo-leone-1200.webp 1200w',
+		sizes: '(min-width: 1400px) 650px, (min-width: 768px) 50vw, 100vw',
+		width: 800,
+		height: 1000,
+	},
 };

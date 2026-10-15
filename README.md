@@ -25,6 +25,5 @@ npm run build    # gera dist/
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 | Variável `NODE_VERSION` | `22` |
-| Variável `SITE_URL` | URL final, ex. `https://www.seudominio.com.br` |
 
-Com `SITE_URL` definida, o build gera `canonical`, `og:url`, `sitemap.xml` e aponta o `robots.txt` para o sitemap. Os cabeçalhos de segurança e de cache ficam em `apps/web/public/_headers`.
+O domínio (`https://romuloleone.com.br`) está em `apps/web/vite.config.js` (JSON-LD, `sitemap.xml`, `robots.txt`) e em `apps/web/index.html` (canonical, Open Graph). Imagens ficam em `apps/web/public/images/`. Os cabeçalhos de segurança e de cache ficam em `apps/web/public/_headers`.
