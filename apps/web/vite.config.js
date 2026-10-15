@@ -17,7 +17,7 @@ const structuredData = {
 	description: 'Médico residente em psiquiatria. Atendimento online (telemedicina).',
 	identifier: 'CRM/SP 256.617',
 	telephone: '+55-19-99721-0581',
-	image: `${siteUrl}/images/romulo-leone-og.jpg`,
+	image: `${siteUrl}/images/romulo-leone-hero-1000.webp`,
 	url: `${siteUrl}/`,
 	logo: `${siteUrl}/icon-512.png`,
 };
