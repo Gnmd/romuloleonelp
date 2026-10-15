@@ -9,7 +9,7 @@ export const site = {
 	photo: {
 		src: '/images/romulo-leone-800.webp',
 		srcSet: '/images/romulo-leone-480.webp 480w, /images/romulo-leone-800.webp 800w, /images/romulo-leone-1200.webp 1200w',
-		sizes: '(min-width: 1400px) 650px, (min-width: 768px) 50vw, 100vw',
+		sizes: '(min-width: 768px) 448px, calc(100vw - 2.5rem)',
 		width: 800,
 		height: 1000,
 	},

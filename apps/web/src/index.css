@@ -4,26 +4,26 @@
 
 @layer base {
 	:root {
-		--background: 0 0% 100%;
-		--foreground: 222 47% 11%;
+		--background: 40 50% 97%;
+		--foreground: 224 41% 18%;
 		--card: 0 0% 100%;
-		--card-foreground: 222 47% 11%;
+		--card-foreground: 224 41% 18%;
 		--popover: 0 0% 100%;
-		--popover-foreground: 222 47% 11%;
-		--primary: 221 83% 53%;
+		--popover-foreground: 224 41% 18%;
+		--primary: 222 100% 17%;
 		--primary-foreground: 0 0% 100%;
-		--secondary: 214 95% 93%;
-		--secondary-foreground: 224 76% 33%;
-		--muted: 210 40% 96%;
-		--muted-foreground: 215 16% 47%;
-		--accent: 214 100% 97%;
-		--accent-foreground: 224 76% 33%;
+		--secondary: 207 64% 95%;
+		--secondary-foreground: 222 100% 17%;
+		--muted: 40 37% 91%;
+		--muted-foreground: 224 21% 37%;
+		--accent: 207 64% 95%;
+		--accent-foreground: 222 100% 17%;
 		--destructive: 0 72% 51%;
 		--destructive-foreground: 0 0% 100%;
-		--border: 214 32% 91%;
-		--input: 214 32% 91%;
-		--ring: 221 83% 53%;
-		--radius: 0.5rem;
+		--border: 40 25% 86%;
+		--input: 40 25% 86%;
+		--ring: 209 83% 37%;
+		--radius: 0.75rem;
 	}
 
 	html {
@@ -31,11 +31,16 @@
 	}
 
 	body {
-		@apply bg-white font-sans text-gray-800;
+		@apply bg-paper font-sans text-ink antialiased;
 	}
 
 	h1, h2, h3 {
-		@apply font-heading;
+		@apply font-heading text-night;
+		text-wrap: balance;
+	}
+
+	::selection {
+		@apply bg-star-300 text-night;
 	}
 }
 
