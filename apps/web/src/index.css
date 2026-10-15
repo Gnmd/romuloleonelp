@@ -44,6 +44,71 @@
 	}
 }
 
+/* Seção principal no estilo do site do Dr. Celso Ayres, com a paleta do logo */
+@layer components {
+	.hero {
+		background: radial-gradient(ellipse at 75% 40%, #0a2a75 0%, #001a58 55%, #000f36 100%);
+	}
+
+	.hero-media {
+		position: absolute;
+		z-index: -1;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 54%;
+	}
+
+	.hero-media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 50% 22%;
+		-webkit-mask-image: linear-gradient(to right, transparent 0%, #000 34%), linear-gradient(to top, transparent 0%, #000 22%);
+		-webkit-mask-composite: source-in;
+		mask-image: linear-gradient(to right, transparent 0%, #000 34%), linear-gradient(to top, transparent 0%, #000 22%);
+		mask-composite: intersect;
+	}
+
+	.hero-inner {
+		min-height: min(calc(100vh - 5rem), 760px);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding-top: clamp(56px, 9vw, 120px);
+	}
+
+	@media (max-width: 860px) {
+		.hero-media {
+			position: relative;
+			width: 100%;
+			aspect-ratio: 1 / 1;
+			max-height: 62vh;
+		}
+
+		.hero-media img {
+			-webkit-mask-image: linear-gradient(to top, transparent 0%, #000 38%);
+			mask-image: linear-gradient(to top, transparent 0%, #000 38%);
+		}
+
+		.hero-inner {
+			min-height: 0;
+			margin-top: -110px;
+			padding-top: 0;
+		}
+	}
+
+	@media (max-width: 560px) {
+		.hero-media {
+			max-height: 52vh;
+		}
+
+		.hero-inner {
+			margin-top: -80px;
+		}
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
