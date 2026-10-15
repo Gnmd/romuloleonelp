@@ -24,15 +24,18 @@ const structuredData = {
 
 const seoPlugin = {
 	name: 'site-seo',
-	transformIndexHtml() {
-		const tags = [
-			{
+	transformIndexHtml(html, ctx) {
+		const tags = [];
+
+		// Dados estruturados só na página principal.
+		if (ctx.path === '/index.html') {
+			tags.push({
 				tag: 'script',
 				attrs: { type: 'application/ld+json' },
 				children: JSON.stringify(structuredData),
 				injectTo: 'head',
-			},
-		];
+			});
+		}
 
 		if (cfBeaconToken) {
 			tags.push({
@@ -56,7 +59,7 @@ const seoPlugin = {
 		this.emitFile({
 			type: 'asset',
 			fileName: 'sitemap.xml',
-			source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${siteUrl}/</loc></url>\n</urlset>\n`,
+			source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${siteUrl}/</loc></url>\n  <url><loc>${siteUrl}/links/</loc></url>\n</urlset>\n`,
 		});
 		this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n` });
 	},
@@ -76,5 +79,11 @@ export default defineConfig({
 	build: {
 		outDir: '../../dist',
 		emptyOutDir: true,
+		rollupOptions: {
+			input: {
+				main: path.resolve(__dirname, 'index.html'),
+				links: path.resolve(__dirname, 'links/index.html'),
+			},
+		},
 	},
 });
