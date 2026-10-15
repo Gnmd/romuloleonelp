@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
+import { site } from '@/config/site';
 
 function WhatsAppButton() {
-  const whatsappUrl = 'https://wa.me/5519997210581?text=Ol%C3%A1%2C%20Romulo%21%20Gostaria%20de%20agendar%20uma%20consulta%2E';
-
   return (
     <motion.a
-      href={whatsappUrl}
+      href={site.whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ opacity: 0, scale: 0, y: 50 }}
@@ -23,7 +22,7 @@ function WhatsAppButton() {
       className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-2xl hover:shadow-[#25D366]/40 transition-shadow duration-300 group"
       aria-label="Agendar consulta via WhatsApp"
     >
-      <MessageCircle className="w-7 h-7 md:w-8 md:h-8" />
+      <MessageCircle className="w-7 h-7 md:w-8 md:h-8" aria-hidden="true" />
       
       {/* Pulse effect rings */}
       <span className="absolute inline-flex w-full h-full rounded-full bg-[#25D366] opacity-30 animate-ping -z-10 group-hover:opacity-50 duration-1000"></span>

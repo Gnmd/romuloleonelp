@@ -1,16 +1,12 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import { motion } from 'framer-motion';
-import { Heart, Brain, Users, Shield, Phone, Calendar, CheckCircle2, Sparkles } from 'lucide-react';
+import { MotionConfig, motion } from 'framer-motion';
+import { Heart, Brain, Users, Shield, Phone, Calendar, CheckCircle2, Sparkles, LifeBuoy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/layout/Header';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import { site } from '@/config/site';
 
 function App() {
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/5519997210581?text=Ol%C3%A1%2C%20Romulo%21%20Gostaria%20de%20agendar%20uma%20consulta%2E', '_blank');
-  };
-
   const areasDeAtuacao = [
     {
       icon: Brain,
@@ -45,18 +41,13 @@ function App() {
   ];
 
   return (
-    <>
-      <Helmet>
-        <title>Dr. Rômulo Leone - Médico residente em psiquiatria | CRM/SP 256.617</title>
-        <meta name="description" content="Dr. Rômulo Leone, médico residente em psiquiatria com olhar fenomenológico e ênfase na experiência do paciente. Atendimento humanizado e baseado em evidências." />
-      </Helmet>
-
+    <MotionConfig reducedMotion="user">
       <div className="min-h-screen">
-        <Header onWhatsAppClick={handleWhatsAppClick} />
+        <Header />
         
         {/* Hero Section */}
         <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 pt-20">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGwwPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiPjxwYXRoIGQ9Ik0zNiAxNmMwLTIuMjEgMS43OS00IDQtNHs0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHptMCAyNGMwLTIuMjEgMS43OS00IDQtNHM0IDEuNzkgNCA0LTEuNzkgNC00IDQtNC0xLjc5LTQtNHptMTIgMTZjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtMS43NS00LTR6bTAgMjRjMC0yLjIxIDEuNzktNCA0LTRzNCAxLjc5IDQgNC0xLjc5IDQtNCA0LTQtNS42OS00LTR6Ii8+PC9nPg==')] opacity-30"></div>
+          <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:24px_24px]"></div>
           
           <div className="container mx-auto px-4 py-20 relative z-10">
             <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -75,7 +66,7 @@ function App() {
                   CRM/SP 256.617
                 </motion.div>
                 
-                <h1 className="text-3xl md:text-4xl font-extrabold leading-tight" style={{ fontFamily: 'Roboto, sans-serif' }}>
+                <h1 className="text-3xl md:text-4xl font-extrabold leading-tight">
                   Dr. Rômulo Leone
                 </h1>
                 
@@ -93,12 +84,14 @@ function App() {
                   transition={{ delay: 0.4 }}
                 >
                   <Button
-                    onClick={handleWhatsAppClick}
+                    asChild
                     size="lg"
                     className="bg-white text-blue-700 hover:bg-blue-50 text-lg px-8 py-6 rounded-full shadow-2xl hover:shadow-blue-500/50 transition-all duration-300 transform hover:scale-105"
                   >
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Agende sua consulta
+                    <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                      <Calendar className="mr-2 h-5 w-5" aria-hidden="true" />
+                      Agende sua consulta
+                    </a>
                   </Button>
                 </motion.div>
               </motion.div>
@@ -112,17 +105,17 @@ function App() {
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/20 backdrop-blur-sm">
                   <img
                     className="w-full h-auto object-cover"
-                    alt="Dr. Rômulo Leone - Médico Psiquiatra"
-                    src="https://lh3.googleusercontent.com/d/1ZyRDWo9IihsjJaoGs6fpK2t5_cgaV2pH"
+                    alt="Foto do Dr. Rômulo Leone, médico residente em psiquiatria"
+                    src={site.photoUrl}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
+                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent"></div>
                 </div>
                 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
-                  className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-6 shadow-2xl"
+                  className="absolute -bottom-6 right-2 md:-right-6 bg-white rounded-2xl p-6 shadow-2xl"
                 >
                   <div className="flex items-center gap-3">
                     <div className="bg-blue-100 p-3 rounded-full">
@@ -140,7 +133,7 @@ function App() {
         </section>
 
         {/* Sobre Section */}
-        <section id="sobre" className="py-20 bg-white">
+        <section id="sobre" className="scroll-mt-20 py-20 bg-white">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -150,7 +143,7 @@ function App() {
               className="max-w-4xl mx-auto"
             >
               <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Roboto, sans-serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                   Sobre o médico
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
@@ -170,7 +163,7 @@ function App() {
                     <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Shield className="h-8 w-8 text-blue-600" />
                     </div>
-                    <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>Formação de Excelência</h3>
+                    <h3 className="font-semibold text-gray-800 mb-2">Formação de Excelência</h3>
                     <p className="text-sm text-gray-600">UESB e Instituto Bairral</p>
                   </div>
 
@@ -179,7 +172,7 @@ function App() {
                       <Heart className="h-8 w-8 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>Cuidado Humanizado</h3>
+                      <h3 className="font-semibold text-gray-800 mb-2">Cuidado Humanizado</h3>
                       <p className="text-sm text-gray-600">Escuta empática e respeitosa</p>
                     </div>
                   </div>
@@ -189,7 +182,7 @@ function App() {
                       <Brain className="h-8 w-8 text-blue-600" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-800 mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>Olhar Fenomenológico</h3>
+                      <h3 className="font-semibold text-gray-800 mb-2">Olhar Fenomenológico</h3>
                       <p className="text-sm text-gray-600">Foco na sua experiência</p>
                     </div>
                   </div>
@@ -200,7 +193,7 @@ function App() {
         </section>
 
         {/* Áreas de Atuação */}
-        <section id="atuacao" className="py-20 bg-gradient-to-br from-blue-50 to-white">
+        <section id="atuacao" className="scroll-mt-20 py-20 bg-gradient-to-br from-blue-50 to-white">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -209,7 +202,7 @@ function App() {
               transition={{ duration: 0.6 }}
             >
               <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Roboto, sans-serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                   Áreas de Atuação
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
@@ -228,7 +221,7 @@ function App() {
                     <div className="bg-gradient-to-br from-blue-100 to-blue-50 w-14 h-14 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                       <area.icon className="h-7 w-7 text-blue-600" />
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>{area.title}</h3>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{area.title}</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">{area.description}</p>
                   </motion.div>
                 ))}
@@ -238,7 +231,7 @@ function App() {
         </section>
 
         {/* Abordagem */}
-        <section id="abordagem" className="py-20 bg-white">
+        <section id="abordagem" className="scroll-mt-20 py-20 bg-white">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -248,7 +241,7 @@ function App() {
               className="max-w-4xl mx-auto"
             >
               <div className="text-center mb-12">
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Roboto, sans-serif' }}>
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                   Abordagem Terapêutica
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-blue-600 mx-auto rounded-full"></div>
@@ -262,19 +255,19 @@ function App() {
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center">
                     <CheckCircle2 className="h-12 w-12 mx-auto mb-3 text-blue-200" />
-                    <h3 className="font-semibold mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>Avaliação Detalhada</h3>
+                    <h3 className="font-semibold mb-2">Avaliação Detalhada</h3>
                     <p className="text-sm text-blue-100">Análise completa e cuidadosa</p>
                   </div>
 
                   <div className="text-center">
                     <CheckCircle2 className="h-12 w-12 mx-auto mb-3 text-blue-200" />
-                    <h3 className="font-semibold mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>Baseado em Evidências</h3>
+                    <h3 className="font-semibold mb-2">Baseado em Evidências</h3>
                     <p className="text-sm text-blue-100">Ciência e atualização constante</p>
                   </div>
 
                   <div className="text-center">
                     <CheckCircle2 className="h-12 w-12 mx-auto mb-3 text-blue-200" />
-                    <h3 className="font-semibold mb-2" style={{ fontFamily: 'Roboto, sans-serif' }}>Abordagem fenomenológica</h3>
+                    <h3 className="font-semibold mb-2">Abordagem fenomenológica</h3>
                     <p className="text-sm text-blue-100">Ênfase na subjetividade</p>
                   </div>
                 </div>
@@ -284,7 +277,7 @@ function App() {
         </section>
 
         {/* Agendamento */}
-        <section id="agendamento" className="py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50">
+        <section id="agendamento" className="scroll-mt-20 py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -293,7 +286,7 @@ function App() {
               transition={{ duration: 0.6 }}
               className="max-w-3xl mx-auto text-center"
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6" style={{ fontFamily: 'Roboto, sans-serif' }}>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
                 Agende sua Consulta
               </h2>
               
@@ -312,17 +305,33 @@ function App() {
                 </div>
 
                 <Button
-                  onClick={handleWhatsAppClick}
+                  asChild
                   size="lg"
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg px-10 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                 >
-                  <Calendar className="mr-2 h-6 w-6" />
-                  Agendar Consulta via WhatsApp
+                  <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    <Calendar className="mr-2 h-6 w-6" aria-hidden="true" />
+                    Agendar Consulta via WhatsApp
+                  </a>
                 </Button>
 
                 <p className="text-sm text-gray-500 mt-6">
                   Resposta rápida e atendimento personalizado
                 </p>
+              </div>
+
+              <div role="note" className="mt-8 flex gap-4 text-left bg-amber-50 border border-amber-200 rounded-2xl p-6">
+                <LifeBuoy className="h-6 w-6 flex-shrink-0 text-amber-700 mt-0.5" aria-hidden="true" />
+                <div className="text-gray-700">
+                  <p className="font-semibold text-gray-800 mb-1">Está em crise ou pensando em se machucar?</p>
+                  <p className="text-sm leading-relaxed">
+                    Este canal não atende emergências. Ligue agora para o{' '}
+                    <a href="tel:188" className="font-semibold text-amber-800 underline">CVV – 188</a>{' '}
+                    (gratuito, 24 horas) ou para o{' '}
+                    <a href="tel:192" className="font-semibold text-amber-800 underline">SAMU – 192</a>,
+                    ou procure o pronto-socorro mais próximo.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -333,12 +342,8 @@ function App() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center justify-center mb-6">
-                <img 
-                  src="https://horizons-cdn.hostinger.com/d03722f1-6557-4911-a882-dd0d28308ec4/b35988045bba8004def0a9c355ceb160.png" 
-                  alt="Logo Dr. Rômulo Leone" 
-                  className="h-8 w-8 mr-3" 
-                />
-                <span className="text-2xl font-bold text-blue-400" style={{ fontFamily: 'Roboto, sans-serif' }}>Dr. Rômulo Leone</span>
+                <img src={site.logoUrl} alt="" width="32" height="32" className="h-8 w-8 mr-3" />
+                <span className="text-2xl font-bold text-blue-400">Dr. Rômulo Leone</span>
               </div>
               
               <div className="text-center mb-8">
@@ -347,6 +352,9 @@ function App() {
               </div>
 
               <div className="border-t border-gray-700 pt-8">
+                <p className="text-sm text-gray-300 text-center leading-relaxed mb-4">
+                  Em emergência ou crise, ligue <a href="tel:188" className="font-semibold text-white underline">188 (CVV)</a> ou <a href="tel:192" className="font-semibold text-white underline">192 (SAMU)</a>.
+                </p>
                 <p className="text-sm text-gray-400 text-center leading-relaxed">
                   Este site tem caráter exclusivamente informativo e segue as normas de publicidade médica do CFM. 
                   As informações aqui contidas não substituem a avaliação médica individualizada.
@@ -354,7 +362,7 @@ function App() {
               </div>
 
               <div className="text-center mt-8 text-gray-500 text-sm">
-                <p>© 2025 Dr. Rômulo Leone. Todos os direitos reservados.</p>
+                <p suppressHydrationWarning>© {new Date().getFullYear()} Dr. Rômulo Leone. Todos os direitos reservados.</p>
               </div>
             </div>
           </div>
@@ -363,7 +371,7 @@ function App() {
         {/* Floating WhatsApp Button */}
         <WhatsAppButton />
       </div>
-    </>
+    </MotionConfig>
   );
 }
 

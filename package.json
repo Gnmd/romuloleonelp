@@ -1,19 +1,18 @@
 {
-  "name": "monorepo",
+  "name": "romuloleone-site",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "setup": "npm install",
-    "dev": "concurrently --kill-others --raw \"npm run dev --prefix apps/web\"",
-    "build": "concurrently --raw \"npm run build --prefix apps/web\"",
-    "start": "concurrently --kill-others --raw",
-    "lint": "concurrently --raw \"npm run lint --prefix apps/web\""
-  },
-  "devDependencies": {
-    "concurrently": "^10.0.6",
-    "knip": "^6.32.1"
+    "dev": "npm run dev --workspace web",
+    "build": "npm run build --workspace web",
+    "preview": "npm run preview --workspace web",
+    "lint": "npm run lint --workspace web"
   },
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "engines": {
+    "node": ">=20"
+  }
 }
