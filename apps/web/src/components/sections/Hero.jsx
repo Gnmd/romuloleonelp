@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Video, GraduationCap, Stethoscope } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import WhatsAppLink from '@/components/WhatsAppLink';
 import { site } from '@/config/site';
 
 const destaques = [
@@ -46,10 +47,10 @@ function Hero() {
               size="lg"
               className="h-auto w-full whitespace-nowrap rounded-full bg-star-300 px-7 py-4 text-base font-semibold text-night transition-transform hover:-translate-y-px hover:bg-[#f3e5ad] sm:w-auto"
             >
-              <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <WhatsAppLink origin="hero">
                 <Calendar className="mr-2 h-5 w-5" aria-hidden="true" />
                 Agendar consulta
-              </a>
+              </WhatsAppLink>
             </Button>
             <a
               href="#abordagem"

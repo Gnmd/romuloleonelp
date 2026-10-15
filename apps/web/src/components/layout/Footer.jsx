@@ -1,4 +1,5 @@
 import React from 'react';
+import WhatsAppLink from '@/components/WhatsAppLink';
 import { site } from '@/config/site';
 
 function Footer() {
@@ -12,6 +13,14 @@ function Footer() {
 
         <p className="mt-5">Médico residente em psiquiatria | {site.crm} | NÃO ESPECIALISTA</p>
         <p>Formado pela UESB | Residente no Instituto Bairral</p>
+        <p className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+          <WhatsAppLink origin="rodape" className="text-white underline-offset-4 hover:underline">
+            WhatsApp {site.phoneDisplay}
+          </WhatsAppLink>
+          <a href={site.crmLookupUrl} target="_blank" rel="noopener noreferrer" className="text-white underline-offset-4 hover:underline">
+            Consultar CRM no portal do CFM
+          </a>
+        </p>
 
         <div className="mt-8 space-y-4 border-t border-white/10 pt-8 text-sm leading-relaxed">
           <p className="text-white/85">

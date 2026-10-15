@@ -6,6 +6,8 @@ import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import Approach from '@/components/sections/Approach';
 import Areas from '@/components/sections/Areas';
+import HowItWorks from '@/components/sections/HowItWorks';
+import Faq from '@/components/sections/Faq';
 import Schedule from '@/components/sections/Schedule';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
@@ -18,6 +20,8 @@ function App() {
         <About />
         <Approach />
         <Areas />
+        <HowItWorks />
+        <Faq />
         <Schedule />
       </main>
       <Footer />

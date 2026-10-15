@@ -3,6 +3,7 @@ import { MessageCircle, LifeBuoy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Reveal from '@/components/Reveal';
 import SectionHeading from '@/components/SectionHeading';
+import WhatsAppLink from '@/components/WhatsAppLink';
 import { site } from '@/config/site';
 
 function Schedule() {
@@ -20,9 +21,9 @@ function Schedule() {
 
       <div className="container relative">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <SectionHeading id="agendamento-title" eyebrow="Agendamento" title="Agende sua consulta" align="center" tone="dark" />
+          <SectionHeading id="agendamento-title" eyebrow="Agende sua consulta" title="Dar o primeiro passo pode ser mais simples do que parece." align="center" tone="dark" />
           <p className="mt-6 text-lg leading-relaxed text-white/80">
-            Atendimento online (telemedicina). Entre em contato e dê o primeiro passo para o seu bem-estar.
+            Envie uma mensagem e agende sua consulta online.
           </p>
 
           <Button
@@ -30,15 +31,14 @@ function Schedule() {
             size="lg"
             className="mt-10 h-auto whitespace-normal rounded-full bg-star px-8 py-4 text-base font-semibold text-night hover:bg-star-300"
           >
-            <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <WhatsAppLink origin="final">
               <MessageCircle className="mr-2 h-5 w-5" aria-hidden="true" />
-              Agendar consulta via WhatsApp
-            </a>
+              Agendar pelo WhatsApp
+            </WhatsAppLink>
           </Button>
 
-          <p className="mt-4 text-sm text-white/60">
-            Resposta rápida e atendimento personalizado · <span className="whitespace-nowrap">{site.phoneDisplay}</span>
-          </p>
+          <p className="mt-4 text-sm text-white/60">{site.phoneDisplay}</p>
+
         </Reveal>
 
         <Reveal delay={0.1} className="mx-auto mt-14 max-w-2xl">

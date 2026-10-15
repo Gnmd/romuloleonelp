@@ -28,4 +28,9 @@ npm run build    # gera dist/
 
 O `wrangler.jsonc` na raiz publica a pasta `dist` no Worker `romuloleonelp`. Se o nome do Worker no painel for outro, ajuste o campo `name`.
 
+### Métricas
+
+- **Cloudflare Web Analytics** (sem cookies): no painel do Cloudflare, em *Web Analytics → Add a site*, copie o token e crie a variável de build `CF_BEACON_TOKEN`. O próximo deploy passa a incluir o script.
+- **Cliques no WhatsApp**: todos os botões usam `WhatsAppLink` (`apps/web/src/components/WhatsAppLink.jsx`) com uma origem (`hero`, `menu`, `menu-mobile`, `final`, `flutuante`, `rodape`). Se Google Analytics/Tag Manager ou Meta Pixel forem instalados, cada clique dispara `whatsapp_click` (GA/GTM) e `Contact` (Pixel) com a origem.
+
 O domínio (`https://romuloleone.com.br`) está em `apps/web/vite.config.js` (JSON-LD, `sitemap.xml`, `robots.txt`) e em `apps/web/index.html` (canonical, Open Graph). Imagens ficam em `apps/web/public/images/`. Os cabeçalhos de segurança e de cache ficam em `apps/web/public/_headers`.

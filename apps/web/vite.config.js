@@ -6,6 +6,10 @@ import { defineConfig } from 'vite';
 // (canonical, og:url, og:image) — altere nos dois lugares se o domínio mudar.
 const siteUrl = 'https://romuloleone.com.br';
 
+// Token do Cloudflare Web Analytics (painel do Cloudflare → Web Analytics →
+// Add a site). Defina CF_BEACON_TOKEN nas variáveis de build para ativar.
+const cfBeaconToken = process.env.CF_BEACON_TOKEN;
+
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@type': 'Physician',
@@ -21,7 +25,7 @@ const structuredData = {
 const seoPlugin = {
 	name: 'site-seo',
 	transformIndexHtml() {
-		return [
+		const tags = [
 			{
 				tag: 'script',
 				attrs: { type: 'application/ld+json' },
@@ -29,6 +33,20 @@ const seoPlugin = {
 				injectTo: 'head',
 			},
 		];
+
+		if (cfBeaconToken) {
+			tags.push({
+				tag: 'script',
+				attrs: {
+					defer: true,
+					src: 'https://static.cloudflareinsights.com/beacon.min.js',
+					'data-cf-beacon': JSON.stringify({ token: cfBeaconToken }),
+				},
+				injectTo: 'body',
+			});
+		}
+
+		return tags;
 	},
 	generateBundle(options) {
 		if (options.ssr || this.environment?.config?.build?.ssr) {

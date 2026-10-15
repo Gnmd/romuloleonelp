@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -8,14 +8,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import WhatsAppLink from '@/components/WhatsAppLink';
 import { site } from '@/config/site';
 
 const menuItems = [
-  { label: 'Início', id: 'inicio' },
   { label: 'Sobre', id: 'sobre' },
   { label: 'Abordagem', id: 'abordagem' },
-  { label: 'Áreas de atuação', id: 'atuacao' },
-  { label: 'Agendamento', id: 'agendamento' }
+  { label: 'Atuação', id: 'atuacao' },
+  { label: 'Como funciona', id: 'como-funciona' },
+  { label: 'Dúvidas', id: 'duvidas' }
 ];
 
 function Header() {
@@ -45,10 +46,10 @@ function Header() {
               </a>
             ))}
             <Button asChild className="whitespace-nowrap rounded-full bg-night px-5 text-white hover:bg-night-700">
-              <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
-                <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
-                {site.phoneDisplay}
-              </a>
+              <WhatsAppLink origin="menu">
+                <Calendar className="mr-2 h-4 w-4" aria-hidden="true" />
+                Agendar consulta
+              </WhatsAppLink>
             </Button>
           </nav>
 
@@ -68,10 +69,10 @@ function Header() {
                 ))}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild className="cursor-pointer bg-ocean-50 font-medium text-night">
-                  <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
-                    <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
-                    Agendar {site.phoneDisplay}
-                  </a>
+                  <WhatsAppLink origin="menu-mobile">
+                    <Calendar className="mr-2 h-4 w-4" aria-hidden="true" />
+                    Agendar consulta
+                  </WhatsAppLink>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

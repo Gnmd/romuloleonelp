@@ -1,33 +1,42 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { MessageCircle } from 'lucide-react';
-import { site } from '@/config/site';
+import WhatsAppLink from '@/components/WhatsAppLink';
 
+// Botão flutuante: aparece depois que a pessoa rola além da seção principal e
+// some enquanto a seção de agendamento (que já tem o botão) está na tela.
 function WhatsAppButton() {
+  const [scrolled, setScrolled] = useState(false);
+  const [scheduleInView, setScheduleInView] = useState(false);
+  const visible = scrolled && !scheduleInView;
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 480);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const schedule = document.getElementById('agendamento');
+    const observer = schedule && 'IntersectionObserver' in window
+      ? new IntersectionObserver(([entry]) => setScheduleInView(entry.isIntersecting))
+      : null;
+    observer?.observe(schedule);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      observer?.disconnect();
+    };
+  }, []);
+
   return (
-    <motion.a
-      href={site.whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, scale: 0, y: 50 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ 
-        type: "spring",
-        stiffness: 260,
-        damping: 20,
-        delay: 0.5 
-      }}
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
-      className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[60] flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-2xl hover:shadow-[#25D366]/40 transition-shadow duration-300 group"
-      aria-label="Agendar consulta via WhatsApp"
+    <WhatsAppLink
+      origin="flutuante"
+      aria-label="Agendar consulta pelo WhatsApp"
+      tabIndex={visible ? 0 : -1}
+      aria-hidden={!visible}
+      className={`fixed bottom-5 right-5 z-[60] inline-flex items-center gap-2.5 rounded-full bg-[#1fa855] py-3.5 pl-4 pr-5 font-semibold text-white shadow-[0_10px_28px_-8px_rgba(31,168,85,0.6)] transition-all duration-300 hover:bg-[#17924a] ${visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-24 opacity-0'}`}
     >
-      <MessageCircle className="w-7 h-7 md:w-8 md:h-8" aria-hidden="true" />
-      
-      {/* Pulse effect rings */}
-      <span className="absolute inline-flex w-full h-full rounded-full bg-[#25D366] opacity-30 animate-ping -z-10 group-hover:opacity-50 duration-1000"></span>
-      <span className="absolute inline-flex w-[120%] h-[120%] rounded-full bg-[#25D366] opacity-20 -z-10 group-hover:animate-ping duration-700"></span>
-    </motion.a>
+      <MessageCircle className="h-6 w-6" aria-hidden="true" />
+      Agendar
+    </WhatsAppLink>
   );
 }
 

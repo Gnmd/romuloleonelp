@@ -3,7 +3,10 @@ export const site = {
 	name: 'Dr. Rômulo Leone',
 	crm: 'CRM/SP 256.617',
 	phoneDisplay: '(19) 99721-0581',
-	whatsappUrl: 'https://wa.me/5519997210581?text=Ol%C3%A1%2C%20Romulo%21%20Gostaria%20de%20agendar%20uma%20consulta%2E',
+	whatsappNumber: '5519997210581',
+	whatsappMessage: 'Olá, Dr. Rômulo! Vim pelo site e gostaria de agendar uma consulta.',
+	// Consulta pública de médicos no portal do CFM.
+	crmLookupUrl: 'https://portal.cfm.org.br/busca-medicos/',
 	logoUrl: '/images/logo-128.webp',
 	// Foto quadrada da seção principal (arquivos em public/images/).
 	heroPhoto: {
