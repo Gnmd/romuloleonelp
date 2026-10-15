@@ -18,12 +18,14 @@ npm run build    # gera dist/
 - Telefone, link do WhatsApp, logo e foto: `apps/web/src/config/site.js`
 - Metatags (título, descrição, Open Graph): `apps/web/index.html`
 
-## Publicação no Cloudflare Pages
+## Publicação no Cloudflare (Workers com arquivos estáticos)
 
 | Configuração | Valor |
 | --- | --- |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
+| Deploy command | `npx wrangler deploy` |
 | Variável `NODE_VERSION` | `22` |
+
+O `wrangler.jsonc` na raiz publica a pasta `dist` no Worker `romuloleonelp`. Se o nome do Worker no painel for outro, ajuste o campo `name`.
 
 O domínio (`https://romuloleone.com.br`) está em `apps/web/vite.config.js` (JSON-LD, `sitemap.xml`, `robots.txt`) e em `apps/web/index.html` (canonical, Open Graph). Imagens ficam em `apps/web/public/images/`. Os cabeçalhos de segurança e de cache ficam em `apps/web/public/_headers`.

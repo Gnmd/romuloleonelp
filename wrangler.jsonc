@@ -1,0 +1,11 @@
+// Configuração do Cloudflare Workers (site estático).
+// Build: `npm run build` gera ./dist; deploy: `npx wrangler deploy`.
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "romuloleonelp",
+	"compatibility_date": "2025-09-01",
+	"assets": {
+		"directory": "./dist",
+		"not_found_handling": "none"
+	}
+}
